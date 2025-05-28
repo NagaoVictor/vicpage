@@ -1,0 +1,50 @@
+/* Fonte gótica Blackletter do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Pirata+One&display=swap');
+
+/* Estilo geral */
+body {
+  background-color: black;
+  color: #00ff00;
+  font-family: 'UnifrakturCook', cursive;
+  margin: 20px;
+}
+
+/* Título principal */
+h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+/* Labels */
+label {
+  font-size: 16px;
+}
+
+/* Entradas e botões */
+input, button {
+  background-color: #111;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 6px 10px;
+  margin: 6px 0;
+  font-family: monospace;
+}
+
+/* Placeholder dentro dos inputs */
+input::placeholder {
+  color: #00aa00;
+}
+
+/* Efeito hover no botão */
+button:hover {
+  background-color: #222;
+  cursor: pointer;
+}
+
+/* Resultado */
+#resultado {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #00ff00;
+}
