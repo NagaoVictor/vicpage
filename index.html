@@ -30,7 +30,7 @@
   <button class="tablinks" onclick="opeMath(event, 'Tokyo')">Tokyo</button>
   <button class="tablinks" onclick="opeMath(event, 'Tokyo')">Tokyo</button>
   <button class="tablinks" onclick="opeMath(event, 'Tokyo')">Tokyo</button>
-  <button class="tablinks" onclick="opeMath(event, 'Tokyo')">Tokyo</button>
+  <button class="tablinks" onclick="opeMath(event, 'Tratamento')">Tratamento</button>
 </div>
 
 <div id="Media" class="tabcontent">
@@ -80,6 +80,20 @@
 
 </div>
 
+
+<div id="Tratamento" class="tabcontent">
+
+  <h3>Tratamento</h3>
+  <p>Caso os dados estejam em uma planilha excel, copie a coluna e cole na caixa abaixo</p>
+  <textarea id="entradaEspacos" rows="4" cols="50" placeholder="Ex: 5 10 15 20"></textarea><br><br>
+
+  <button onclick="converterEspacos()">Converter</button><br><br>
+
+  <label>Resultado com vírgulas (copie para a média):</label><br>
+  <textarea id="saidaVirgulas" rows="2" cols="50" readonly></textarea>
+</div>
+
+
 <div id="Tokyo" class="tabcontent">
   <h3>Tokyo</h3>
   <p>Tokyo is the capital of Japan.</p>
@@ -93,6 +107,8 @@
 <!-- Importa o script JS -->
 <script src="oper.js"></script>
 <script src="operprob.js"></script>
+<script src="tratamentos.js"></script>
+
 
 </body>
 </html>
