@@ -21,7 +21,7 @@ body {font-family: Arial;}
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #00ff48;
+  background-color: #0b1ae5;
 }
 
 /* Create an active/current tablink class */
