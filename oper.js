@@ -68,36 +68,53 @@ function mostrarResultados() {
     ? porcentagemInput
     : 10;
 
-  const media = mediaAritmetica(valores).toFixed(2);
-  const med = mediana(valores).toFixed(2);
-  const modaResult = moda(valores).join(", ") || "Nenhuma (todos os valores têm mesma frequência)";
-  const geo = mediaGeometrica(valores).toFixed(2);
-  const harm = mediaHarmonica(valores).toFixed(2);
-  const aparada = mediaAparada(valores, porcentagem).toFixed(2);
+  const media = mediaAritmetica(valores);
+  const med = mediana(valores);
+  const modaResult = moda(valores);
+  const geo = mediaGeometrica(valores);
+  const harm = mediaHarmonica(valores);
+  const aparada = mediaAparada(valores, porcentagem);
+
+  const erroMedio = valores.reduce((acc, x) => acc + Math.abs(x - media), 0) / valores.length;
+  const varianciaPop = valores.reduce((acc, x) => acc + Math.pow(x - media, 2), 0) / valores.length;
+  const varianciaAmostra = valores.reduce((acc, x) => acc + Math.pow(x - media, 2), 0) / (valores.length - 1);
+  const desvioPadraoPop = Math.sqrt(varianciaPop);
+  const desvioPadraoAmostra = Math.sqrt(varianciaAmostra);
+
+  // Frequência relativa
+  const total = valores.length;
+  const freqMap = {};
+  valores.forEach(v => {
+    freqMap[v] = (freqMap[v] || 0) + 1;
+  });
+
+  let tabelaFreq = "<table border='1' style='margin-top:20px'><tr><th>Valor</th><th>Frequência Absoluta</th><th>Frequência Relativa (%)</th></tr>";
+  Object.entries(freqMap).forEach(([valor, freq]) => {
+    const rel = ((freq / total) * 100).toFixed(2);
+    tabelaFreq += `<tr><td>${valor}</td><td>${freq}</td><td>${rel}%</td></tr>`;
+  });
+  tabelaFreq += "</table>";
 
   document.getElementById("resultado").innerHTML = `
-  <strong>Resultados:</strong><br><br>
+    <strong>Resultados:</strong><br><br>
 
-  \\[ \\text{Média Aritmética: } \\bar{x} = \\frac{\\sum x_i}{n} = ${media} \\]
+    \\[ \\text{Média Aritmética: } \\bar{x} = \\frac{\\sum x_i}{n} = ${media.toFixed(2)} \\]
+    \\[ \\text{Mediana: valor central dos dados ordenados} = ${med.toFixed(2)} \\]
+    \\[ \\text{Moda: valor(es) mais frequente(s)} = ${modaResult.length ? modaResult.join(", ") : "Nenhuma"} \\]
+    \\[ \\text{Média Geométrica: } G = \\sqrt[${valores.length}]{${valores.join(" \\cdot ")}} = ${geo.toFixed(2)} \\]
+    \\[ \\text{Média Harmônica: } H = \\frac{${valores.length}}{${valores.map(v => `(1/${v})`).join(" + ")}} = ${harm.toFixed(2)} \\]
+    \\[ \\text{Média Aparada (${porcentagem}\\%): } \\bar{x}_t = ${aparada.toFixed(2)} \\]
+    \\[ \\text{Erro Médio Absoluto: } EMA = \\frac{1}{n} \\sum |x_i - \\bar{x}| = ${erroMedio.toFixed(2)} \\]
+    \\[ \\text{Variância Populacional: } \\sigma^2 = ${varianciaPop.toFixed(2)} \\]
+    \\[ \\text{Variância Amostral: } s^2 = ${varianciaAmostra.toFixed(2)} \\]
+    \\[ \\text{Desvio Padrão Populacional: } \\sigma = ${desvioPadraoPop.toFixed(2)} \\]
+    \\[ \\text{Desvio Padrão Amostral: } s = ${desvioPadraoAmostra.toFixed(2)} \\]
 
-  \\[ \\text{Mediana: valor central dos dados ordenados} = ${med} \\]
+    <br><strong>Frequência Relativa:</strong><br>
+    ${tabelaFreq}
+  `;
 
-  \\[ \\text{Moda: valor(es) mais frequente(s)} = ${modaResult} \\]
-
-  \\[ \\text{Média Geométrica: } G = \\sqrt[${valores.length}]{${valores.join(' \\cdot ')}} = ${geo} \\]
-
-  \\[ \\text{Média Harmônica: } H = \\frac{${valores.length}}{${valores.map(v => `(1/${v})`).join(' + ')}} = ${harm} \\]
-
-  \\[ \\text{Média Aparada (${porcentagem}\\%): } \\bar{x}_t = ${aparada} \\]
-`;
-
-if (window.MathJax) {
-  MathJax.typesetPromise();
-}
-
-// Força o MathJax a processar o novo conteúdo
-if (window.MathJax) {
-  MathJax.typesetPromise();
-}
-
+  if (window.MathJax) {
+    MathJax.typesetPromise();
+  }
 }
