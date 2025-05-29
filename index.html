@@ -52,6 +52,32 @@
 <div id="Probabilidade descritiva" class="tabcontent">
   <h3>Prob. Descritiva</h3>
   <p>Probabilidade Descritiva</p> 
+  <div style="background:black; color:#00ff00; padding:20px; font-family:monospace">
+  <h3>Probabilidade Manual</h3>
+
+  <label>Eventos Favoráveis:</label>
+  <input id="favoraveis" type="number"><br>
+
+  <label>Eventos Possíveis:</label>
+  <input id="possiveis" type="number"><br><br>
+
+  <label>P(A):</label>
+  <input id="pa" type="number" step="0.01"><br>
+
+  <label>P(B):</label>
+  <input id="pb" type="number" step="0.01"><br>
+
+  <label>P(A ∩ B):</label>
+  <input id="paeb" type="number" step="0.01"><br>
+
+  <label>P(B|A):</label>
+  <input id="pba" type="number" step="0.01"><br><br>
+
+  <button onclick="calcularProbabilidades()">Calcular</button>
+
+  <pre id="saida" style="margin-top:20px; color: #00ff00;"></pre>
+</div>
+
 </div>
 
 <div id="Tokyo" class="tabcontent">
@@ -66,5 +92,7 @@
 
 <!-- Importa o script JS -->
 <script src="oper.js"></script>
+<script src="probabilidades.js"></script>
+
 </body>
 </html>
